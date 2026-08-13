@@ -69,6 +69,8 @@ Windows 卷影副本（VSS 快照）桌面管理工具。单文件分发、双�
 - **双击快照行**（或右键"打开浏览"）→ 资源管理器打开快照内容
 - 右键"复制设备路径"可复制 `\\?\GLOBALROOT\Device\HarddiskVolumeShadowCopyN` 形式路径
 
+<img width="1459" height="966" alt="image" src="https://github.com/user-attachments/assets/f65fda4f-d0ac-4a52-9016-4835047871d7" />
+
 ### 2. 存储配额页
 
 - 每个固定磁盘一行：已用空间、已分配、上限、占用比例、存储位置
@@ -93,11 +95,17 @@ Windows 卷影副本（VSS 快照）桌面管理工具。单文件分发、双�
 
 操作：未选中任务时仅「新建任务」；点击任务进入编辑（再点取消选中）；选中后可 保存 / 导出 XML / 立即运行 / 启用禁用 / 删除。
 
+<img width="1459" height="966" alt="image" src="https://github.com/user-attachments/assets/3377e5dc-416e-42dc-89b8-2be083cfaab6" />
+
+
 ### 4. 命令日志页
 
 - 所有查询与操作的真实命令：时间、工具、参数、退出码、耗时
 - 点击行查看完整输出；保留最新 500 条，自动淘汰最旧，新记录不丢失
 - 可复制完整输出
+
+<img width="1459" height="966" alt="image" src="https://github.com/user-attachments/assets/f9dbf00a-1384-47cd-9728-f231afef740f" />
+
 
 ### 5. 系统信息页
 
