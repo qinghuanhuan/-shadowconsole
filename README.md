@@ -147,6 +147,10 @@ VSS 存在配额限制，请至"存储配额"页调整上限，或删除旧快�
 **Q：日志文件在哪里、保留多久？**  
 `%TEMP%\shadowconsole\` 下，各日志文件保留最近 500 条自动截断；排查问题可查看 crash.log / disptex.log / taskerr.log。
 
+**Q：另一个主题长啥样？**  
+<img width="1459" height="966" alt="image" src="https://github.com/user-attachments/assets/33bdc346-814a-4ab1-b5f4-4c79c5976e5c" />
+
+
 ---
 
 ## 运行环境
