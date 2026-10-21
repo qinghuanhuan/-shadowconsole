@@ -6,7 +6,7 @@ Windows 卷影副本（VSS 快照）桌面管理工具。单文件分发、双�
 
 > **10 秒上手**：下载 → 双击 → UAC 点「是」→ 使用。
 
-本项目100%由 deepseek v4 flash 编写agent倒是换了好几个。
+本项目100%由 AI 编写。
 鉴于本人代码审查能力几乎等于不存在，请大家自行鉴别。
 
 ---
@@ -19,11 +19,11 @@ Windows 卷影副本（VSS 快照）桌面管理工具。单文件分发、双�
 
 ### 功能覆盖
 
-覆盖桌面 Windows 用户可用的全部 VSS 能力：快照查看 / 创建 / 删除、配额调整、定时计划、快照浏览、系统状态。**仅未处理「指定存储位置」一项**（桌面系统支持该能力，未规划，个人觉得无用）；其余未覆盖项均为 Windows Server 或 SAN 硬件专属能力，桌面端不支持。
+覆盖桌面 Windows 用户可用的全部 VSS 能力：快照查看 / 创建 / 删除、配额调整、定时计划、快照浏览、系统状态。其余未覆盖项均为 Windows Server 或 SAN 硬件专属能力，桌面端不支持。
 
 ### 分发与卫生
 
-单文件分发（约 200 KB），无外部依赖、无配置文件。运行时临时文件统一存放于 `%TEMP%\shadowconsole\`，**各日志文件保留最近 500 条**，不残留、不污染系统。
+单文件分发（约 300 KB），无外部依赖、无配置文件。运行时临时文件统一存放于 `%TEMP%\shadowconsole\`，不残留、不污染系统。
 
 ### 透明可审查
 
@@ -37,7 +37,7 @@ Windows 卷影副本（VSS 快照）桌面管理工具。单文件分发、双�
 
 ## 10 秒上手
 
-1. **下载** `卷影管理台.bat`（约 200 KB，无任何外部依赖）
+1. **下载** `卷影管理台.bat`（约 300 KB，无任何外部依赖）
 2. **运行**：双击，CMD窗后弹出Powershell窗，之后 UAC 弹窗点「是」
 3. **使用**：左侧导航切换页面；**双击/右键** 快照行 即可在资源管理器中浏览该时间点的文件内容
 
@@ -69,17 +69,26 @@ Windows 卷影副本（VSS 快照）桌面管理工具。单文件分发、双�
 - **双击快照行**（或右键"打开浏览"）→ 资源管理器打开快照内容
 - 右键"复制设备路径"可复制 `\\?\GLOBALROOT\Device\HarddiskVolumeShadowCopyN` 形式路径
 
-<img width="1459" height="966" alt="image" src="https://github.com/user-attachments/assets/f65fda4f-d0ac-4a52-9016-4835047871d7" />
+<img width="1259" height="1164" alt="image" src="https://github.com/user-attachments/assets/de8d07ab-8c7b-46fd-9500-a994eef83c24" />
+
 
 ### 2. 存储配额页
 
 - 每个固定磁盘一行：已用空间、已分配、上限、占用比例、存储位置
 - 未设置配额的卷显示"未设置"，点"调整"可首次创建
 - 自动上限按（空闲空间 + 卷影占用）比例计算；达到上限后系统自动淘汰最旧快照
+- 增加行颜色标记，红色为当前无法创建卷影的卷，灰色为当前未分配配额的卷（通常为0卷影的券）
+
+<img width="1258" height="1164" alt="image" src="https://github.com/user-attachments/assets/5d45971b-5875-4261-8320-0a32d675d578" />
+
+
+
+
+
 
 ### 3. 计划任务页
 
-左侧任务列表，右侧编辑表单：
+上方任务列表，下方编辑表单：
 
 | 设置项 | 说明 |
 | --- | --- |
@@ -95,7 +104,9 @@ Windows 卷影副本（VSS 快照）桌面管理工具。单文件分发、双�
 
 操作：未选中任务时仅「新建任务」；点击任务进入编辑（再点取消选中）；选中后可 保存 / 导出 XML / 立即运行 / 启用禁用 / 删除。
 
-<img width="1459" height="966" alt="image" src="https://github.com/user-attachments/assets/3377e5dc-416e-42dc-89b8-2be083cfaab6" />
+<img width="1258" height="1164" alt="image" src="https://github.com/user-attachments/assets/1557cb9c-20c2-4b35-872c-6bfb1b2bae2b" />
+
+
 
 
 ### 4. 命令日志页
@@ -103,13 +114,19 @@ Windows 卷影副本（VSS 快照）桌面管理工具。单文件分发、双�
 - 所有查询与操作的真实命令：时间、工具、参数、退出码、耗时
 - 点击行查看完整输出；保留最新 500 条，自动淘汰最旧，新记录不丢失
 - 可复制完整输出
+- 增加日志落盘开关，默认日志不落盘，真0残留
 
-<img width="1459" height="966" alt="image" src="https://github.com/user-attachments/assets/f9dbf00a-1384-47cd-9728-f231afef740f" />
+<img width="1258" height="1164" alt="image" src="https://github.com/user-attachments/assets/e398a2be-d642-452f-8925-8810c1e2c22b" />
+
+
+
+
 
 
 ### 5. 系统信息页
 
 提供程序列表（名称 / 类型 / 版本 / ID）、写入程序列表（状态 / 名称 / ID / 实例 / 上次错误）及原始输出——排查 VSS 健康状态。
+<img width="1258" height="1164" alt="image" src="https://github.com/user-attachments/assets/42c7ae83-70f1-4a20-8126-3e14a1a1480b" />
 
 ---
 
@@ -148,7 +165,9 @@ VSS 存在配额限制，请至"存储配额"页调整上限，或删除旧快�
 `%TEMP%\shadowconsole\` 下，各日志文件保留最近 500 条自动截断；排查问题可查看 crash.log / disptex.log / taskerr.log。
 
 **Q：另一个主题长啥样？**  
-<img width="1459" height="966" alt="image" src="https://github.com/user-attachments/assets/33bdc346-814a-4ab1-b5f4-4c79c5976e5c" />
+<img width="1258" height="1164" alt="image" src="https://github.com/user-attachments/assets/ef1d2bbf-10ea-4ec8-9d7d-f56834be0407" />
+
+
 
 
 ---
